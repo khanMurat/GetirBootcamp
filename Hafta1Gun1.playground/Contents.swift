@@ -26,11 +26,7 @@ func question1(s: String,value:Int){
     }
     print(prefixs)
     
-    prefixs.forEach { char in
-        string = string.filter { chr in
-            char != chr
-        }
-    }
+    string.removeAll { prefixs.contains($0)}
     print(string)
 }
 
@@ -52,6 +48,22 @@ func question2(input : String) {
     for (item,index) in dict {
         print("\(item) : \(index) kere geçiyor")
     }
+}
+
+// FOR SCRIPT
+
+func question3(){
+    /*
+     #!/usr/bin/env swift
+     import Foundation
+     
+     var names = ["Mert","Eren","Yusuf","Ali","Zeynep"]
+     
+     for name in names.sorted(by: { $0 > $1 }) {
+     print(name.uppercased())
+     }
+     */
+    
 }
 
 func question4(){
