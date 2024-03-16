@@ -1,10 +1,37 @@
 import UIKit
 
 
-func question1(){
+func question1(s: String,value:Int){
    
+    var dict : [String:Int] = [:]
     
+    var string = s
     
+    var prefixs = ""
+    
+    for item in s {
+        
+        if dict[String(item)] == nil {
+            dict[String(item)] = 1
+        }else{
+            dict[String(item)] = dict[String(item)]! + 1
+        }
+    }
+    
+    for (str,indx) in dict {
+        
+        if indx == value {
+            prefixs.append(str)
+        }
+    }
+    print(prefixs)
+    
+    prefixs.forEach { char in
+        string = string.filter { chr in
+            char != chr
+        }
+    }
+    print(string)
 }
 
 func question2(input : String) {
@@ -69,7 +96,7 @@ func question7(){
     
 }
    
-
+question1(s: "aaba kouq bux", value: 3)
 question2(input: "Merhaba nasılsınız iyiyim siz nasılsınız bende iyiyim")
 question5(range: 10)
 question6(value: 8)
