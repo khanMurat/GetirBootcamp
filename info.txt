@@ -1,0 +1,11 @@
+Ad Soyad       : Murat ALA
+
+Yaşadığı Şehir : Ankara
+
+Yaş            : 27
+
+Üniversite     : Eskişehir Osmangazi Üniversitesi
+
+İş             : iOS Developer
+
+
