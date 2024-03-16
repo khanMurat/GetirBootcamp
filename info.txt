@@ -8,4 +8,5 @@ Yaş            : 27
 
 İş             : iOS Developer
 
+linkedin       : https://www.linkedin.com/in/alamurat/
 
