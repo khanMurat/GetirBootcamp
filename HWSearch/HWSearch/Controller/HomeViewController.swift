@@ -29,14 +29,14 @@ class HomeViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         configureTableView()
         configureRefresher()
         setupKeyboardNotifications()
+        viewModel.delegate = self
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        fetchRecentValues()
+        fetchData()
     }
     
     deinit {
@@ -62,7 +62,7 @@ class HomeViewController: UIViewController {
     }
     
     @objc func refreshController(){
-        self.fetchRecentValues()
+        fetchData()
         self.refresher.endRefreshing()
     }
     
@@ -96,12 +96,10 @@ class HomeViewController: UIViewController {
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
     }
     
-    func fetchRecentValues(){
-        Helper.showLoader(isLoading: true)
-        self.recentValues = viewModel.getRecentWordFromDatabase()
-        Helper.showLoader(isLoading: false)
+    func fetchData(){
+        viewModel.getRecentWordFromDatabase()
     }
-    
+        
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let vc = segue.destination as? DetailViewController {
             vc.word = self.text
@@ -126,5 +124,15 @@ extension HomeViewController : UITableViewDelegate,UITableViewDataSource {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         self.text = recentValues[indexPath.row].name
         performSegue(withIdentifier: "toDetail", sender: nil)
+    }
+}
+
+extension HomeViewController : HomeViewModelDelegate {
+    func didReceiveTableData(_ values: [DatabaseModel]) {
+        self.recentValues = values
+    }
+    
+    func didFailWithError(_ error: NetworkError) {
+        
     }
 }

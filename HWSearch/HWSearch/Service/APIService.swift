@@ -32,4 +32,27 @@ class APIService {
             }
         }
     }
+    
+    static func fetchSynonyms(word:String,completion: @escaping (Result<[SynonymModel], NetworkError>) -> Void) {
+        
+        guard let url = URL(string: "\(Constants.URL_SYNONYM)\(word)") else {
+            completion(.failure(.invalidURL))
+            return
+        }
+        
+        AF.request(url, method: .get).responseData { response in
+            switch response.result {
+            case .success(let data):
+                let decoder = JSONDecoder()
+                do {
+                    let synonyms = try decoder.decode([SynonymModel].self, from: data)
+                    completion(.success(synonyms))
+                } catch {
+                    completion(.failure(.parsingError))
+                }
+            case .failure:
+                completion(.failure(.unknown))
+            }
+        }
+    }
 }

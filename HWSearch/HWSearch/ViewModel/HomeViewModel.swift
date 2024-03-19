@@ -8,7 +8,15 @@
 import Foundation
 import UIKit
 
+protocol HomeViewModelDelegate : AnyObject {
+    
+    func didReceiveTableData(_ values : [DatabaseModel])
+    func didFailWithError(_ error: NetworkError)
+}
+
 class HomeViewModel {
+    
+    weak var delegate : HomeViewModelDelegate?
     
     func checkSearchText(searchText: String,completion : (Bool) -> Void) {
         
@@ -26,8 +34,7 @@ class HomeViewModel {
         LocalDataSource.shared.insertWord(model: databaseModel)
     }
     
-    func getRecentWordFromDatabase() -> [DatabaseModel]{
-        
-       return LocalDataSource.shared.getLastWords()
+    func getRecentWordFromDatabase(){
+        self.delegate?.didReceiveTableData(LocalDataSource.shared.getLastWords())
     }
 }

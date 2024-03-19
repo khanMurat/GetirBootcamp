@@ -107,10 +107,35 @@
                     <view key="view" contentMode="scaleToFill" id="Ppx-Oa-s9h">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="a8z-Jw-TGP">
+                                <rect key="frame" x="0.0" y="103" width="393" height="749"/>
+                                <subviews>
+                                    <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="OkK-rU-aYw">
+                                        <rect key="frame" x="0.0" y="8" width="385" height="707"/>
+                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                        <connections>
+                                            <outlet property="dataSource" destination="5gg-rS-MtY" id="hmg-nL-UZ6"/>
+                                            <outlet property="delegate" destination="5gg-rS-MtY" id="7Ca-Zh-dqO"/>
+                                        </connections>
+                                    </tableView>
+                                </subviews>
+                                <directionalEdgeInsets key="directionalLayoutMargins" top="8" leading="0.0" bottom="0.0" trailing="8"/>
+                            </stackView>
+                        </subviews>
                         <viewLayoutGuide key="safeArea" id="rIX-ye-37X"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="a8z-Jw-TGP" firstAttribute="leading" secondItem="rIX-ye-37X" secondAttribute="leading" id="79N-yH-Wk8"/>
+                            <constraint firstItem="a8z-Jw-TGP" firstAttribute="trailing" secondItem="rIX-ye-37X" secondAttribute="trailing" id="TK3-48-WDp"/>
+                            <constraint firstAttribute="bottom" secondItem="a8z-Jw-TGP" secondAttribute="bottom" id="Tio-P8-pm8"/>
+                            <constraint firstItem="a8z-Jw-TGP" firstAttribute="top" secondItem="rIX-ye-37X" secondAttribute="top" id="bL5-lS-UFD"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="qOy-co-4F6"/>
+                    <connections>
+                        <outlet property="tableView" destination="OkK-rU-aYw" id="dUq-D2-Knv"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="AEx-wH-F8J" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
