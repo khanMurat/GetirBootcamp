@@ -34,11 +34,6 @@ class SearchView : UIView {
         configureUI()
     }
     
-    @IBAction func searchTextFieldView(_ sender: Any) {
-        
-        
-        
-    }
     
     //MARK: - Helpers
     
