@@ -65,6 +65,30 @@ func question3<T,U>(array : [T],transform : (T) -> U) -> [U] {
     return transformedArray
 }
 
+// EULER
+
+//What is the smallest positive number that is evenly divisible by all of the numbers from 1 to 20?
+
+func ebob(_ a: Int, _ b: Int) -> Int {
+    if b == 0 {
+        return a
+    } else {
+        return ebob(b, a % b)
+    }
+}
+
+func ekok(_ a: Int, _ b: Int) -> Int {
+    return a * b / ebob(a, b)
+}
+
+func enKucukOrtakKat() -> Int {
+    var sonuc = 1
+    for i in 1...10 {
+        sonuc = ekok(sonuc, i)
+    }
+    return sonuc
+}
+
 
 question1(index: 2)
 question2(num: 63636)
@@ -72,4 +96,5 @@ let array = question3(array: ["murat","burak","ronaldo"]) {return $0.count}
 let array2 = question3(array: [1,2,3,4,5]) { return String($0)}
 print(array)
 print(array2)
+print(enKucukOrtakKat())
 
