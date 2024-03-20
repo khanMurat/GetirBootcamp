@@ -9,7 +9,7 @@ import Foundation
 
 protocol DetailViewModelDelegate: AnyObject {
     func didReceiveHeaderData(_ viewModel: DetailHeaderViewModel)
-    //func didReceiveFooterData(_ footerData: [String])
+    func didReceiveFooterData(_ footerData: [SynonymModel])
     func didReceiveTableData(_ meanings : [Meaning])
     func didFailWithError(_ error: NetworkError)
 }
@@ -24,13 +24,16 @@ class DetailViewModel {
         var wordDefinition: [WordDefinition]?
         var synonyms: [SynonymModel]?
         
+        Helper.showLoader(isLoading: true)
+        
         dispatchGroup.enter()
         APIService.fetchData(word: word) { result in
             switch result {
             case .success(let definition):
                 wordDefinition = definition
             case .failure(let error):
-                print(error.localizedDescription)
+                self.delegate?.didFailWithError(error)
+                Helper.showLoader(isLoading: false)
             }
             dispatchGroup.leave()
         }
@@ -41,7 +44,8 @@ class DetailViewModel {
             case .success(let synonymModels):
                 synonyms = synonymModels
             case .failure(let error):
-                print(error.localizedDescription)
+                self.delegate?.didFailWithError(error)
+                Helper.showLoader(isLoading: false)
             }
             dispatchGroup.leave()
         }
@@ -53,11 +57,14 @@ class DetailViewModel {
                 self.delegate?.didReceiveTableData(wordDefinition[0].meanings)
             }
             
-            //            if let synonyms = synonyms {
-            //                let footerData = DetailFooterViewModel(synonyms: synonyms.map { $0.word })
-            //                self.delegate?.didReceiveFooterData(footerData)
-            //            }
+            if var synonyms = synonyms {
+                synonyms = synonyms.sorted(by: { $0.score < $1.score })
+                let first5 = Array(synonyms.prefix(5))
+                let footerData = first5
+                self.delegate?.didReceiveFooterData(footerData)
+            }
         }
+        Helper.showLoader(isLoading: false)
     }
 }
 

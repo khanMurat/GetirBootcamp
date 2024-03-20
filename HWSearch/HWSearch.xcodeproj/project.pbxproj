@@ -48,6 +48,7 @@
 		FBB0EC2D2BA9AEE800A97BA4 /* DetailHeaderViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBB0EC2C2BA9AEE800A97BA4 /* DetailHeaderViewModel.swift */; };
 		FBB0EC312BA9BF6B00A97BA4 /* DetailTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBB0EC2F2BA9BF6B00A97BA4 /* DetailTableViewCell.swift */; };
 		FBB0EC322BA9BF6B00A97BA4 /* DetailTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FBB0EC302BA9BF6B00A97BA4 /* DetailTableViewCell.xib */; };
+		FBDBAEEB2BAAB3DE00A572D7 /* UICollectionViewEx.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBDBAEEA2BAAB3DE00A572D7 /* UICollectionViewEx.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -90,6 +91,7 @@
 		FBB0EC2C2BA9AEE800A97BA4 /* DetailHeaderViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailHeaderViewModel.swift; sourceTree = "<group>"; };
 		FBB0EC2F2BA9BF6B00A97BA4 /* DetailTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailTableViewCell.swift; sourceTree = "<group>"; };
 		FBB0EC302BA9BF6B00A97BA4 /* DetailTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DetailTableViewCell.xib; sourceTree = "<group>"; };
+		FBDBAEEA2BAAB3DE00A572D7 /* UICollectionViewEx.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UICollectionViewEx.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -173,6 +175,7 @@
 				FB923D862BA84E8C00A19663 /* Indicator.swift */,
 				FB9F8D592BA86074007938B4 /* TableViewEx.swift */,
 				FBB0EC0B2BA9909D00A97BA4 /* Responder.swift */,
+				FBDBAEEA2BAAB3DE00A572D7 /* UICollectionViewEx.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -389,6 +392,7 @@
 				FB923D872BA84E8C00A19663 /* Indicator.swift in Sources */,
 				FB923D8B2BA84EED00A19663 /* ProgressHUD.swift in Sources */,
 				FBB0EC0C2BA9909D00A97BA4 /* Responder.swift in Sources */,
+				FBDBAEEB2BAAB3DE00A572D7 /* UICollectionViewEx.swift in Sources */,
 				FB923D742BA839F200A19663 /* DictionaryModel.swift in Sources */,
 				FBB0EC2A2BA9AAAC00A97BA4 /* FooterCollectionViewCell.swift in Sources */,
 				FBB0EC122BA990B800A97BA4 /* DetailViewModel.swift in Sources */,

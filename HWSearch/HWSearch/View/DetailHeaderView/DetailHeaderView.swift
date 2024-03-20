@@ -30,7 +30,6 @@ class DetailHeaderView : UIView {
     func configureHeaderView(viewModel:DetailHeaderViewModel?){
         
         guard let viewModel = viewModel else {return}
-        
         wordNameLabel.text = viewModel.wordName
         phoneticLabel.text = viewModel.phonetic
     }

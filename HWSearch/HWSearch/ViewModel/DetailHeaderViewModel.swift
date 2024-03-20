@@ -11,11 +11,9 @@ struct DetailHeaderViewModel {
     
     var model : WordDefinition?
     
-    
     var wordName : String {
         return model?.word ?? ""
     }
-    
     
     var phonetic : String {
         return model?.phonetic ?? ""

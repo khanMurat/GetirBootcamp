@@ -19,6 +19,7 @@ class DetailViewController: UIViewController {
     private let viewModel = DetailViewModel()
     private var meanings = [Meaning]()
     private lazy var headerView = DetailHeaderView(frame: CGRect(x: 0, y: 0, width: self.tableView.frame.width, height: 80))
+    private lazy var footerView = DetailFooterView(frame: CGRect(x: 0, y: 0, width: self.tableView.frame.width, height: 150))
     
     //MARK: - Lifecyle
     
@@ -38,6 +39,7 @@ class DetailViewController: UIViewController {
     func configureTableView(){
         self.tableView._registerCell = DetailTableViewCell.self
         self.tableView.tableHeaderView = headerView
+        self.tableView.tableFooterView = footerView
     }
 }
 
@@ -66,14 +68,14 @@ extension DetailViewController : UITableViewDelegate,UITableViewDataSource {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return UITableView.automaticDimension
     }
-    
-    func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 70
-    }
 }
 
 extension DetailViewController : DetailViewModelDelegate {
-  
+    func didReceiveFooterData(_ footerData: [SynonymModel]) {
+        footerView.synonyms = footerData
+        footerView.collectionView.reloadData()
+    }
+    
     func didReceiveHeaderData(_ viewModel: DetailHeaderViewModel) {
         headerView.configureHeaderView(viewModel: viewModel)
     }

@@ -19,6 +19,8 @@ class FooterCollectionViewCell: UICollectionViewCell {
     
     func configureUI(){
         self.layer.cornerRadius = 20
+        self.layer.borderWidth = 1
+        self.layer.borderColor = UIColor.lightGray.cgColor
     }
 
 }
