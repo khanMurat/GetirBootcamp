@@ -13,9 +13,9 @@ class ViewController: UIViewController {
     @IBOutlet weak var pageControl: UIPageControl!
     @IBOutlet weak var nextButton: UIButton!
     
-    
-    private var index : Int = 0 {
-        didSet{
+    private var index: Int = 0 {
+        didSet {
+            
             pageControl.currentPage = index
         }
     }
@@ -35,24 +35,23 @@ class ViewController: UIViewController {
     
     @IBAction func nextButtonPressed(_ sender: Any) {
         
-        let nextIndex = self.index + 1
-
+        let nextIndex = index + 1
         if nextIndex < onboardings.count {
-            let nextIndexPath = IndexPath(item: nextIndex, section: 0)
-            self.collectionView.scrollToItem(at: nextIndexPath, at: .centeredHorizontally, animated: true)
-            self.index = nextIndex
+            let indexPath = IndexPath(item: nextIndex, section: 0)
+            collectionView.scrollToItem(at: indexPath, at: .centeredHorizontally, animated: true)
+            index = nextIndex
         }
     }
     
-    
     func setupView() {
-        self.collectionView.register(OnboardingCollectionViewCell.self, forCellWithReuseIdentifier: "OnboardingCollectionViewCell")
+        let nib = UINib(nibName: "OnboardingCollectionViewCell", bundle: nil)
+        self.collectionView.register(nib, forCellWithReuseIdentifier: "OnboardingCollectionViewCell")
         self.collectionView.delegate = self
         self.collectionView.dataSource = self
         self.collectionView.isPagingEnabled = true
         self.collectionView.showsHorizontalScrollIndicator = false
     }
-    
+
     private func setupPageControl() {
         pageControl.numberOfPages = onboardings.count
         pageControl.currentPage = 0
@@ -74,16 +73,12 @@ extension ViewController : UICollectionViewDelegate,UICollectionViewDataSource,U
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: collectionView.bounds.width, height: collectionView.bounds.height)
+        let width: CGFloat = self.collectionView.frame.width
+        let height: CGFloat = self.collectionView.frame.height
+        let size: CGSize = CGSize.init(width: width, height: height)
+        return size
     }
-    
-    func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        let visibleRect = CGRect(origin: collectionView.contentOffset, size: collectionView.bounds.size)
-        let visiblePoint = CGPoint(x: visibleRect.midX, y: visibleRect.midY)
-        guard let visibleIndexPath = collectionView.indexPathForItem(at: visiblePoint) else { return }
-        self.index = visibleIndexPath.item
-        self.contentOffset = Int(scrollView.contentOffset.x)
-    }
+
     func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
         let pageWidth = collectionView.frame.size.width
         index = Int(scrollView.contentOffset.x / pageWidth)
